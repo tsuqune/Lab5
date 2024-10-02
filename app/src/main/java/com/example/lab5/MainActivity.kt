@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var funt: CheckBox
     private lateinit var input: EditText
     private lateinit var calculate: Button
+    private lateinit var view: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,22 +33,32 @@ class MainActivity : AppCompatActivity() {
         funt = findViewById(R.id.funt)
         input = findViewById(R.id.input)
         calculate = findViewById(R.id.Сalculates)
+        view = findViewById(R.id.textV)
         setCheckBoxListener(dollar)
         setCheckBoxListener(euro)
         setCheckBoxListener(funt)
 
         calculate.setOnClickListener {
-            if (funt.isChecked) {
-                
-            }
-            if (euro.isChecked) {
+            val inputString: String = input.text.toString()
+            val sum: Double? = inputString.toDoubleOrNull()
 
-            }
-            if (dollar.isChecked) {
-
-            }
-            else {
-
+            if (sum != null) {
+                when {
+                    funt.isChecked -> {
+                        view.text = (sum * 124.2).toString() // Преобразуем результат в строку
+                    }
+                    euro.isChecked -> {
+                        view.text = (sum * 103.4).toString() // Пример конвертации в евро
+                    }
+                    dollar.isChecked -> {
+                        view.text = (sum * 92.7).toString() // Пример конвертации в доллары (можно изменить)
+                    }
+                    else -> {
+                        view.text = "Выберите валюту для конвертации."
+                    }
+                }
+            } else {
+                view.text = "Пожалуйста, введите корректное число."
             }
         }
     }
