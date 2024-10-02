@@ -45,13 +45,13 @@ class MainActivity : AppCompatActivity() {
             if (sum != null) {
                 when {
                     funt.isChecked -> {
-                        view.text = (sum * 124.2).toString() // Преобразуем результат в строку
+                        view.text = (sum * 0.0107).toString() // Преобразуем результат в строку
                     }
                     euro.isChecked -> {
-                        view.text = (sum * 103.4).toString() // Пример конвертации в евро
+                        view.text = (sum * 0.0096).toString() // Пример конвертации в евро
                     }
                     dollar.isChecked -> {
-                        view.text = (sum * 92.7).toString() // Пример конвертации в доллары (можно изменить)
+                        view.text = (sum * 0.0079).toString() // Пример конвертации в доллары (можно изменить)
                     }
                     else -> {
                         view.text = "Выберите валюту для конвертации."
